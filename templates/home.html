@@ -1,0 +1,50 @@
+<!doctype html>
+{% load static %}
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Sepluvetcon">
+    <link rel="icon" href="{% static 'logo.png' %}">
+    <title>R4C - Роботы для потребителей</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="{% static 'home.css' %}" rel="stylesheet">
+    <meta name="theme-color" content="#712cf9">
+  </head>
+
+  <body class="d-flex h-100 text-center text-bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h4 class="float-md-start mb-0">R4C - Роботы для потребителей</h4>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="{% url 'home' %}">Главная</a>
+            <a class="nav-link fw-bold py-1 px-0" href="{% url 'robots-list' %}">API</a>
+            <a class="nav-link fw-bold py-1 px-0" href="{% url 'swagger-ui' %}">Документация</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="px-3">
+        <h1>R4C - Роботы для потребителей</h1>
+        <p class="lead">Сервис для контроля, администрирование и ведения статистики по производству роботов.</p>
+        <p class="lead">
+          <a href="{% url 'robots-list' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white me-3">API</a>
+          <a href="{% url 'swagger-ui' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Документация</a>
+          <p>
+            {% if user.is_superuser %}
+              <a class="nav-link fw-bold py-1 px-0" href="{% url 'get-last-week-robots-report' %}">Получить сводку по производству роботов за последнюю неделю</a>
+            {% endif %}
+          </p>
+        </p>
+      </main>
+
+      <footer class="mt-auto text-white-50">
+        <p>R4C - Robots API. <a href="https://bst.digital/" class="text-white">BST Digital</a>. 2023</p>
+        <p></p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>

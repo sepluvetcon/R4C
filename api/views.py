@@ -7,11 +7,11 @@ from robots.models import Robot
 from orders.models import Order
 from customers.models import Customer
 
-from .serializers import RobotSerializer, UserSerializer
+from .serializers import (RobotSerializer, UserSerializer, 
+    CustomerSerializer, OrderSerializer)
 from .permissions import IsSuperUserOnly
 from .utils import get_last_week_robots, get_path_to_excel_file
 
-import json
 
 class RobotViewSet(viewsets.ModelViewSet):
     '''
@@ -37,6 +37,24 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsSuperUserOnly]
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    '''
+    ViewSet заказов.
+    '''
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class CustomerViewSet(viewsets.ModelViewSet):
+    '''
+    ViewSet покупателей.
+    '''
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
 
 
 class LastWeekRobotsApiView(generics.ListAPIView):

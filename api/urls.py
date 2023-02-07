@@ -1,11 +1,14 @@
 from rest_framework.routers import SimpleRouter
 from django.urls import path
 
-from .views import RobotViewSet, UserViewSet, LastWeekRobotsApiView, get_last_week_robots_report
+from .views import (RobotViewSet, UserViewSet, OrderViewSet,
+	CustomerViewSet, LastWeekRobotsApiView, get_last_week_robots_report)
 
 
 router = SimpleRouter()
 router.register('users', UserViewSet, basename='users') # Список пользователей 
+router.register('orders', OrderViewSet, basename='orders') # Список заказов
+router.register('customers', CustomerViewSet, basename='customers') # Список покупателей
 router.register('', RobotViewSet, basename='robots') # Список роботов
 
 urlpatterns = [
